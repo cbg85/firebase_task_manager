@@ -1,17 +1,15 @@
 class Task {
-  String id;
-  String name;
-  bool isCompleted;
-  List<Task> subTasks; // Nested list
+  final String id;
+  final String name;
+  final bool isCompleted;
 
-  Task({required this.id, required this.name, this.isCompleted = false, this.subTasks = const []});
+  Task({required this.id, required this.name, required this.isCompleted});
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
       'isCompleted': isCompleted,
-      'subTasks': subTasks.map((task) => task.toMap()).toList(),
     };
   }
 
@@ -20,7 +18,6 @@ class Task {
       id: map['id'],
       name: map['name'],
       isCompleted: map['isCompleted'],
-      subTasks: List<Task>.from(map['subTasks']?.map((task) => Task.fromMap(task)) ?? []),
     );
   }
 }
